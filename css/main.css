@@ -1,0 +1,382 @@
+@import url(./helper.css);
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightgray;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    font-family: lato, sans-serif;
+}
+
+.all-app {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* HEADER */
+
+.main-header {
+    background-color: lavender;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+
+.main-header h2 {
+    font-size: 1.8rem;
+}
+
+.main-header>* {
+    margin: 0 60px;
+}
+
+.main-header nav>* {
+    color: rgb(51, 51, 51);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+
+/* HOME PAGE */
+
+.home-page-container {
+    text-align: center;
+}
+
+.home-page-container img {
+    border-radius: 10px;
+}
+
+
+/* BOOK APP */
+
+.book-app {
+    width: 90%;
+}
+
+
+/* FILTER AREA */
+
+.filter-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    /*  */
+    background-color: lightskyblue;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.filter-area h2 {
+    margin: 0;
+}
+
+.filter-area>input {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+
+/* BOOK LIST */
+
+.book-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-auto-rows: auto;
+    padding: 10px;
+    gap: 50px;
+}
+
+
+/* BOOK PREVIEW */
+
+.book-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    background-color: rgb(114, 184, 207);
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    /*  */
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.book-box .book-title {
+    font-family: Mate;
+    font-size: 3rem;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.book-box .book-subtitle::first-letter {
+    text-transform: capitalize;
+}
+
+.book-box .book-price {
+    margin-bottom: 20px;
+}
+
+.book-box img {
+    width: 150px;
+    border-radius: 10px;
+}
+
+
+/* BOOK DETAILS */
+
+.book-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    /*  */
+    position: relative;
+    width: 90%;
+    padding: 20px;
+    margin: 20px;
+    background-color: rgba(236, 238, 144, 0.87);
+    border-radius: 20px;
+}
+
+.book-details h2 {
+    text-transform: capitalize;
+    font-family: Mate;
+    font-size: 3rem;
+    margin: 0;
+}
+
+.book-details h4 {
+    text-transform: capitalize;
+    font-size: 1.3rem;
+    margin: 5px;
+}
+
+.book-details .selected-book-subtitle {
+    font-size: 1.2rem;
+}
+
+.book-details .selected-book-subtitle::first-letter {
+    text-transform: capitalize;
+}
+
+.book-details .book-description {
+    cursor: pointer;
+}
+
+.reviews-img-area {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    height: 250px;
+    gap: 15px;
+}
+
+.book-details img {
+    height: 100%;
+    flex-grow: 1;
+    border-radius: 10px;
+}
+
+.close-details-btn {
+    position: absolute;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    top: -10px;
+    right: -10px;
+}
+
+.add-review-btn {
+    position: absolute;
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    top: 10px;
+    left: 10px;
+}
+
+.review-box {
+    background-color: lightblue;
+    font-weight: bold;
+    position: relative;
+    height: 100%;
+    max-width: 220px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.delete-review-btn {
+    position: absolute;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    top: -10px;
+    right: -10px;
+}
+
+
+/* PRICE AREA */
+
+.book-details .price-area {
+    margin: 15px;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.book-details .on-sale-sign {
+    background-color: rgb(29, 29, 29);
+    border-radius: 5px;
+    color: whitesmoke;
+    padding: 10px;
+}
+
+
+/* REVIEW ADD AREA */
+
+.review-add-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding: 20px;
+}
+
+.review-add-container h2 {
+    font-size: 2em;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.review-add-container h3 {
+    text-transform: capitalize;
+}
+
+.review-add-container>form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-add-container .rate-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-add-container .rate-area>:first-child {
+    font-weight: bold;
+}
+
+.review-add-container .rate-area>:last-child {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.review-add-container>form>input,
+select {
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+.review-add-container textarea {
+    font-family: lato, sans-serif;
+    text-align: left;
+    border-radius: 10px;
+    width: 350px;
+    height: 150px;
+    padding: 10px;
+}
+
+.review-add-container button {
+    align-self: center;
+    border-radius: 10px;
+    border: none;
+    width: 150px;
+    padding: 15px;
+}
+
+
+/* USER MSG */
+
+.user-msg {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.user-msg>button {
+    position: absolute;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    top: -50px;
+    right: -10px;
+}
+
+.user-msg>span {
+    border: 2px solid black;
+    border-radius: 15px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 40px;
+}
+
+.msg-red {
+    border-color: rgba(206, 20, 20, 0.911) !important;
+    background-color: rgb(207, 102, 54) !important;
+}
+
+.msg-green {
+    border-color: rgb(11, 155, 11) !important;
+    background-color: lightgreen !important;
+}
+
+
+/* FONT FACES */
+
+@font-face {
+    font-family: lato;
+    src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: Mate;
+    src: url(../fonts/MateSC-Regular.ttf);
+}

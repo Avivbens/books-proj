@@ -1,0 +1,22 @@
+.bold {
+    font-weight: bold;
+}
+
+button {
+    cursor: pointer;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    filter: contrast(130%);
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
