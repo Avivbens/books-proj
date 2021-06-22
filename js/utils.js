@@ -1,5 +1,8 @@
 const currency_symbols = {
     'USD': '$', // US Dollar
+    'EN': '$', // US Dollar
+    'HE': '₪', // Israeli New Sheqel
+    'IL': '₪', // Israeli New Sheqel
     'EUR': '€', // Euro
     'CRC': '₡', // Costa Rican Colón
     'GBP': '£', // British Pound Sterling
@@ -14,7 +17,7 @@ const currency_symbols = {
     'THB': '฿', // Thai Baht
     'UAH': '₴', // Ukrainian Hryvnia
     'VND': '₫', // Vietnamese Dong
-};
+}
 
 function getCurrencySymbol(name) {
     return currency_symbols[name]

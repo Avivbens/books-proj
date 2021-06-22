@@ -13,6 +13,8 @@ export const booksService = {
     removeReview,
     convertGoogleSearchToBooks,
     getFromGoogleSearch,
+    getIndex,
+    getByIdx,
 }
 
 function query() {
@@ -25,6 +27,18 @@ function get(bookId) {
 
 function post(book) {
     return storageService.post(BOOKS_KEY, book)
+}
+
+function getIndex(bookId) {
+    return query()
+        .then(books => {
+            return books.findIndex(book => book.id === bookId)
+        })
+}
+
+function getByIdx(idx) {
+    return query()
+        .then(res => res[idx])
 }
 
 function updateReview(book, bookReview) {
@@ -49,7 +63,7 @@ function _save(book) {
     }
 }
 
-function createBook(id, title, subtitle, authors, publishDate, description, pageCount, thumbnail, listPrice) {
+function createBook(id, title, subtitle, authors, publishDate, description, pageCount, thumbnail, language, listPrice) {
     return {
         id,
         title,
@@ -59,6 +73,7 @@ function createBook(id, title, subtitle, authors, publishDate, description, page
         description,
         pageCount,
         thumbnail,
+        language,
         listPrice
     }
 }
@@ -76,7 +91,8 @@ function convertGoogleSearchToBooks(items) {
             book.volumeInfo.publishedDate,
             book.volumeInfo.description,
             book.volumeInfo.pageCount,
-            book.volumeInfo.imageLinks.thumbnail, {
+            book.volumeInfo.imageLinks.thumbnail,
+            book.volumeInfo.language, {
                 amount: Math.floor(Math.random() * 120 + 20),
                 currencyCode: book.saleInfo.country,
                 isOnSale: book.saleInfo.isEbook

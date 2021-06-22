@@ -60,13 +60,26 @@ export default {
                 <img :src="book.thumbnail" alt="">
             </div>
 
+
+            <label>
+                <router-link v-if="prevBook"
+                :to="'/books/'+prevBook.id"    >
+                Previous Book</router-link>
+
+                <router-link v-if="nextBook"
+                :to="'/books/'+nextBook.id"    >
+                Next Book</router-link>
+            </label>
+
         </section>
 
     `,
     data() {
         return {
             showMoreDesc: false,
-            book: null
+            book: null,
+            nextBook: null,
+            prevBook: null,
         }
     },
     methods: {
@@ -78,6 +91,30 @@ export default {
         },
         deleteReview(reviewToDelete) {
             booksService.removeReview(this.book, reviewToDelete)
+        },
+        setNextPrevBooks(bookId) {
+            booksService.getIndex(bookId)
+                .then((bookIdx) => {
+                    let bookCount
+                    booksService.query()
+                        .then(res => bookCount = res.length)
+                        .then(() => {
+                            this.nextBook = this.prevBook = null
+                            if (bookIdx + 1 < bookCount) {
+                                booksService.getByIdx(bookIdx + 1)
+                                    .then(book => {
+                                        this.nextBook = book
+                                    })
+                            }
+
+                            if (bookIdx - 1 >= 0) {
+                                booksService.getByIdx(bookIdx - 1)
+                                    .then(book => {
+                                        this.prevBook = book
+                                    })
+                            }
+                        })
+                })
         }
     },
     computed: {
@@ -118,6 +155,21 @@ export default {
             .then(book => {
                 this.book = book
             })
+    },
+    watch: {
+        '$route.params.id': {
+            immediate: true,
+            handler() {
+                const { id } = this.$route.params
+                booksService.get(id)
+                    .then(book => {
+                        this.book = book
+                    })
+                    .then(() => {
+                        this.setNextPrevBooks(id)
+                    })
+            },
+        }
     },
     components: {
         bookReview,

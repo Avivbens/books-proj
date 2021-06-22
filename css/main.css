@@ -13,6 +13,7 @@ body {
     width: 100vw;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .all-app {
@@ -118,7 +119,7 @@ body {
     background-color: rgb(114, 184, 207);
     border-radius: 10px;
     padding: 10px;
-    width: 100%;
+    width: 110%;
     /*  */
     font-size: 1.4rem;
     cursor: pointer;
@@ -126,9 +127,11 @@ body {
 
 .book-box .book-title {
     font-family: Mate;
-    font-size: 3rem;
-    margin: 0;
+    font-size: 2.7rem;
+    max-width: 100%;
+    max-height: 250px;
     text-transform: capitalize;
+    margin: 0;
 }
 
 .book-box .book-subtitle::first-letter {
