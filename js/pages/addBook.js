@@ -28,17 +28,23 @@ export default {
         searchBook() {
             if (!this.search) return
 
-            let r = JSON.parse(localStorage.getItem('r'))
-            if (!r) {
-                console.log('server')
-                googleSearchService.searchBooks(this.search)
-                    .then((res) => {
-                        r = res
-                        localStorage.setItem('r', JSON.stringify(r))
-                    })
-            }
+            console.log('server')
+            googleSearchService.searchBooks(this.search)
+                .then((res) => {
+                    this.booksForDisplay = booksService.convertGoogleSearchToBooks(res.data.items)
+                })
 
-            this.booksForDisplay = booksService.convertGoogleSearchToBooks(r.data.items)
+            // let r = JSON.parse(localStorage.getItem('r'))
+            // if (!r) {
+            //     console.log('server')
+            //     googleSearchService.searchBooks(this.search)
+            //         .then((res) => {
+            //             r = res
+            //             localStorage.setItem('r', JSON.stringify(r))
+            //         })
+            // }
+
+            // this.booksForDisplay = booksService.convertGoogleSearchToBooks(r.data.items)
 
         },
         debounce(func, wait, ...args) {

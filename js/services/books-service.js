@@ -84,6 +84,8 @@ function getFromGoogleSearch(id) {
 
 function convertGoogleSearchToBooks(items) {
     gSearchBooks = items.map(book => {
+        let img = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : undefined
+
         return booksService.createBook(
             book.id, book.volumeInfo.title,
             '',
@@ -91,7 +93,7 @@ function convertGoogleSearchToBooks(items) {
             book.volumeInfo.publishedDate,
             book.volumeInfo.description,
             book.volumeInfo.pageCount,
-            book.volumeInfo.imageLinks.thumbnail,
+            img,
             book.volumeInfo.language, {
                 amount: Math.floor(Math.random() * 120 + 20),
                 currencyCode: book.saleInfo.country,

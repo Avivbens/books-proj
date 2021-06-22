@@ -138,6 +138,7 @@ export default {
             }
         },
         bookDescription() {
+            if (!this.book.description) return
             let description = this.book.description
             description = description.split(' ')
 
