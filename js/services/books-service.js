@@ -1,21 +1,23 @@
-import { storageService } from './async-storage-service.js';
+import { storageService } from './async-storage-service.js'
 
-const BOOKS_KEY = 'books';
+const BOOKS_KEY = 'books'
 
 export const booksService = {
     query,
     get,
     updateReview,
     createBooks,
+    createBook,
     removeReview,
+    convertGoogleSearchToBooks,
 }
 
 function query() {
-    return storageService.query(BOOKS_KEY);
+    return storageService.query(BOOKS_KEY)
 }
 
 function get(bookId) {
-    return storageService.get(BOOKS_KEY, bookId);
+    return storageService.get(BOOKS_KEY, bookId)
 }
 
 function updateReview(book, bookReview) {
@@ -34,10 +36,42 @@ function removeReview(book, reviewToDelete) {
 
 function _save(book) {
     if (book.id) {
-        return storageService.put(BOOKS_KEY, book);
+        return storageService.put(BOOKS_KEY, book)
     } else {
-        return storageService.post(BOOKS_KEY, book);
+        return storageService.post(BOOKS_KEY, book)
     }
+}
+
+function createBook(id, title, subtitle, authors, publishDate, description, pageCount, thumbnail, listPrice) {
+    return {
+        id,
+        title,
+        subtitle,
+        authors,
+        publishDate,
+        description,
+        pageCount,
+        thumbnail,
+        listPrice
+    }
+}
+
+function convertGoogleSearchToBooks(items) {
+    return items.map(book => {
+        return booksService.createBook(
+            book.id, book.volumeInfo.title,
+            '',
+            book.volumeInfo.authors,
+            book.volumeInfo.publishedDate,
+            book.volumeInfo.description,
+            book.volumeInfo.pageCount,
+            book.volumeInfo.imageLinks.thumbnail, {
+                amount: Math.floor(Math.random() * 120 + 20),
+                currencyCode: book.saleInfo.country,
+                isOnSale: book.saleInfo.isEbook
+            }
+        )
+    })
 }
 
 function createBooks() {

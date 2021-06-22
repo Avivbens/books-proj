@@ -1,0 +1,10 @@
+.add-book-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-book-container .main-title {
+    font-size: 2.5rem;
+}

@@ -1,8 +1,9 @@
-import homePage from './pages/homePage.js';
-import bookApp from './pages/bookApp.js';
-import bookDetails from './pages/bookDetails.js';
-import aboutPage from './pages/aboutPage.js';
-import bookReview from './cmps/reviewAdd.js';
+import homePage from './pages/homePage.js'
+import bookApp from './pages/bookApp.js'
+import bookDetails from './pages/bookDetails.js'
+import aboutPage from './pages/aboutPage.js'
+import bookReview from './cmps/reviewAdd.js'
+import addBook from './pages/addBook.js'
 
 const routes = [{
         path: '/',
@@ -23,6 +24,10 @@ const routes = [{
     {
         path: '/books/:id/review',
         component: bookReview
+    },
+    {
+        path: '/addBook',
+        component: addBook
     },
 ]
 

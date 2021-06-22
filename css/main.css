@@ -1,15 +1,18 @@
 @import url(./helper.css);
+@import url(./cmps/addBook.css);
 * {
     box-sizing: border-box;
 }
 
 body {
     background-color: lightgray;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     font-family: lato, sans-serif;
+    /*  */
+    width: 100vw;
+    margin: 0;
+    padding: 0;
 }
 
 .all-app {
@@ -57,6 +60,7 @@ body {
 
 .home-page-container img {
     border-radius: 10px;
+    max-height: 350px;
 }
 
 
