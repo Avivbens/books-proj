@@ -1,4 +1,4 @@
-import { booksService } from "./books-service.js";
+import { booksService } from "./books-service.js"
 
 export const storageService = {
     query,
@@ -11,7 +11,7 @@ export const storageService = {
 
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || booksService.createBooks()
-    return Promise.resolve(entities);
+    return Promise.resolve(entities)
 }
 
 function get(entityType, entityId) {
@@ -20,38 +20,38 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-    newEntity.id = _makeId()
+    // newEntity.id = _makeId()
     return query(entityType)
         .then(entities => {
-            entities.push(newEntity);
+            entities.unshift(newEntity)
             _save(entityType, entities)
-            return newEntity;
+            return newEntity
         })
 }
 
 function postMany(entityType, newEntities) {
     return query(entityType)
         .then(entities => {
-            entities.push(...newEntities);
+            entities.push(...newEntities)
             _save(entityType, entities)
-            return entities;
+            return entities
         })
 }
 
 function put(entityType, updatedEntity) {
     return query(entityType)
         .then(entities => {
-            const idx = entities.findIndex(entity => entity.id === updatedEntity.id);
+            const idx = entities.findIndex(entity => entity.id === updatedEntity.id)
             entities.splice(idx, 1, updatedEntity)
             _save(entityType, entities)
-            return updatedEntity;
+            return updatedEntity
         })
 }
 
 function remove(entityType, entityId) {
     return query(entityType)
         .then(entities => {
-            const idx = entities.findIndex(entity => entity.id === entityId);
+            const idx = entities.findIndex(entity => entity.id === entityId)
             entities.splice(idx, 1)
             _save(entityType, entities)
         })
@@ -62,10 +62,10 @@ function _save(entityType, entities) {
 }
 
 function _makeId(length = 5) {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var text = ""
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
     for (var i = 0; i < length; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+        text += possible.charAt(Math.floor(Math.random() * possible.length))
     }
-    return text;
+    return text
 }

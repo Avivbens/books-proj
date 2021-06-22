@@ -1,4 +1,6 @@
-import booksPreview from "../cmps/bookPreview.js";
+import booksPreview from "../cmps/bookPreview.js"
+import { booksService } from "../services/books-service.js"
+import { eventBus } from "../services/eventBus.js"
 
 export default {
     props: ['books'],
@@ -18,7 +20,22 @@ export default {
     `,
     methods: {
         selectBook(id) {
-            this.$router.push('/books/' + id)
+            booksService.get(id)
+                .then(res => {
+                    // Handle exist books on the server
+                    if (res) this.$router.push('/books/' + id)
+
+                    // Handle books from google search
+                    else {
+                        booksService.post(booksService.getFromGoogleSearch(id))
+                        this.$router.push('/books')
+                        eventBus.$emit('reviewAdded', {
+                            txt: 'Successfully Added!',
+                            link: '/books/' + id,
+                            type: 'success'
+                        })
+                    }
+                })
         }
     },
 }

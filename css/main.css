@@ -166,6 +166,7 @@ body {
     text-transform: capitalize;
     font-family: Mate;
     font-size: 3rem;
+    max-width: 650px;
     margin: 0;
 }
 

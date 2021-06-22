@@ -1,15 +1,18 @@
 import { storageService } from './async-storage-service.js'
 
 const BOOKS_KEY = 'books'
+var gSearchBooks = null
 
 export const booksService = {
     query,
     get,
+    post,
     updateReview,
     createBooks,
     createBook,
     removeReview,
     convertGoogleSearchToBooks,
+    getFromGoogleSearch,
 }
 
 function query() {
@@ -18,6 +21,10 @@ function query() {
 
 function get(bookId) {
     return storageService.get(BOOKS_KEY, bookId)
+}
+
+function post(book) {
+    return storageService.post(BOOKS_KEY, book)
 }
 
 function updateReview(book, bookReview) {
@@ -56,8 +63,12 @@ function createBook(id, title, subtitle, authors, publishDate, description, page
     }
 }
 
+function getFromGoogleSearch(id) {
+    return gSearchBooks.find(book => book.id === id)
+}
+
 function convertGoogleSearchToBooks(items) {
-    return items.map(book => {
+    gSearchBooks = items.map(book => {
         return booksService.createBook(
             book.id, book.volumeInfo.title,
             '',
@@ -72,6 +83,8 @@ function convertGoogleSearchToBooks(items) {
             }
         )
     })
+
+    return gSearchBooks
 }
 
 function createBooks() {

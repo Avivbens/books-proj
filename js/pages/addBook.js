@@ -39,7 +39,6 @@ export default {
             }
 
             this.booksForDisplay = booksService.convertGoogleSearchToBooks(r.data.items)
-            console.log('🚀 ~ this.booksForDisplay', this.booksForDisplay)
 
         },
         debounce(func, wait, ...args) {
